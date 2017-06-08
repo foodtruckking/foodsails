@@ -116,3 +116,7 @@ npm-debug.log
 nbproject
 .idea
 .node_history
+assets/dist/
+build/semantic/
+*.sublime-workspace
+*.sublime-project

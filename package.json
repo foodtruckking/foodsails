@@ -24,8 +24,15 @@
     "sails-disk": "~0.10.9"
   },
   "scripts": {
+    "dev": "concurrently \"npm run semantic\" \"npm run vue\" \"npm start\"",
+    "semantic": "cd build && gulp watch",
+    "vue": "webpack-dev-server --config build/webpack.config.js --host=0.0.0.0 --hot --inline",
+    "build": "npm run build-semantic && npm run build-vue",
+    "build-semantic": "cd build/semantic && gulp build",
+    "build-vue": "cross-env NODE_ENV=production webpack --config build/webpack.config.js --hide-modules",
     "debug": "node debug app.js",
-    "start": "node app.js"
+    "start": "node app.js",
+    "postinstall": "npm run build-semantic"
   },
   "main": "app.js",
   "repository": {
@@ -33,5 +40,29 @@
     "url": "git://github.com/1003710/ftk-vue.git"
   },
   "author": "1003710",
-  "license": ""
+  "license": "",
+  "devDependencies": {
+    "babel-core": "^6.24.1",
+    "babel-loader": "^7.0.0",
+    "babel-preset-latest": "^6.24.1",
+    "babel-preset-stage-2": "^6.24.1",
+    "concurrently": "^3.4.0",
+    "cross-env": "^5.0.0",
+    "css-loader": "^0.28.4",
+    "file-loader": "^0.11.2",
+    "gulp": "^3.9.1",
+    "jquery": "^3.2.1",
+    "lodash": "^4.17.4",
+    "node-sass": "^4.5.3",
+    "sass-loader": "^6.0.5",
+    "semantic-ui": "^2.2.10",
+    "style-loader": "^0.18.2",
+    "vue": "^2.3.3",
+    "vue-loader": "^12.2.1",
+    "vue-template-compiler": "^2.3.3",
+    "vue2-google-maps": "^0.7.7",
+    "vuex": "^2.3.1",
+    "webpack": "^2.6.1",
+    "webpack-dev-server": "^2.4.5"
+  }
 }
